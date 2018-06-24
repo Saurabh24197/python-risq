@@ -1,2 +1,10 @@
-# auto-image
-Reddit Post(Images) download script, using praw-api
+## Reddit Imgur Squasher - risq.py
+A commandline python script to grab images from subreddit > posts
+
+```
+python3 risq.py subreddit-name threshold-limit
+
+subreddit-name (without "r/") 
+threshold-limit (number < 100 preferable)
+```
+ Created by r/nogtx aka Saurabh K
