@@ -30,10 +30,12 @@ try:
     subreddit=reddit.subreddit(subr_name)
     submissions = subreddit.hot(limit=thr_limit)
 
-    if not os.path.exists(subr_name):
-        os.makedirs(subr_name)
-    os.chdir(subr_name)
+    dir_name = 'r_' + subr_name
+    if not os.path.exists(dir_name):
+        os.makedirs(dir_name)
+    os.chdir(dir_name)
 
+    img_count = 0
     for post in submissions:
         if not post.stickied:
             if not (('https://i.redd.it/' in post.url) or ('https://i.imgur.com/' in post.url)):
@@ -51,7 +53,11 @@ try:
             with open(filename, 'wb') as handler:
                 handler.write(post_img)
                 # post.mark_visited()
+                img_count += 1
                 print('[{0}]'.format(post.url), filename, 'saved!')
+    
+    print('Images saved ({0}) in {1}'.format(img_count, dir_name))
+    
 except Exception as e:
     print('An error occurred!')
     print('python3 risq.py [subreddit (without "r/")] [limit (number < 100 preferable)]')
